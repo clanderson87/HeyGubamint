@@ -14,5 +14,6 @@ namespace FaceYourNation.Models
         public int PublicSupport { get; set; } //the amount of public support
         public int PublicOpposition { get; set; } //the amount of public opposition
         public string theBill { get; set; } //a link to the Bill
+        
     }
 }
