@@ -20,6 +20,8 @@ namespace FaceYourNation.DAL
             context = _context;
         }
 
+        //Private Methods to DRY code
+
         private void S()
         {
             context.SaveChanges();
@@ -68,6 +70,8 @@ namespace FaceYourNation.DAL
             return vote;
         }
 
+        //Public Methods for Getting/Manipulating Data
+        
         public void AddIssuePosition(string iss_name, string dis, string vid, bool _bool)
         {
             iss_name = san(iss_name);
