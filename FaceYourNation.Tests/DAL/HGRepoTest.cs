@@ -208,5 +208,37 @@ namespace FaceYourNation.Tests.DAL
             Assert.AreEqual(1, result.Against);
         }
 
+        [TestMethod]
+        public void RepoEnsureICanAddBill()
+        {
+            //Arrange
+            ConnectMocks();
+
+            //Act
+            Repo.AddBill("Guns for everybody!", "https://www.congress.gov/bill", "h.r.1232", pres_support: true);
+            Repo.AddBill("More Trump Plz!", "https://www.wtf.com", "sjcr.1237");
+
+            //Assert
+            Assert.AreEqual(2, bill_datasource.Count);
+        }
+
+        [TestMethod]
+        public void RepoEnsureICanGetBillPublicPosition()
+        {
+            ConnectMocks();
+            //Arrange
+            Bill bill = new Bill();
+            bill.Name = "Let's not and say we did!";
+            bill.SenateID = "sr9876";
+            bill_datasource.Add(bill);
+
+            //Act
+            Repo.AddBillPosition("abc456", "TN5", true, senate: "sr9876", import: 2);
+            PositionResult result = Repo.GetBillPublicPosition(senate: "s.r.9876", dis: "Tn5");
+
+            //Assert
+            Assert.AreEqual("tn5", result.District);
+            Assert.AreEqual(1, result.For);
+        }
     }
 }

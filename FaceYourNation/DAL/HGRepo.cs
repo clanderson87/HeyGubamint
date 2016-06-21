@@ -109,6 +109,7 @@ namespace FaceYourNation.DAL
             {
                 dis = san(dis);
                 q = q.Where(v => v.District == dis);
+                result.District = dis;
             }
 
             List<Vote> votes = q.ToList();
@@ -150,7 +151,6 @@ namespace FaceYourNation.DAL
 
         public void AddBill(string name, string the_bill, string house = "", string senate = "", bool pres_support = false)
         {
-
             house = san(house);
             senate = san(senate);
             Bill bill = new Bill();
@@ -179,29 +179,44 @@ namespace FaceYourNation.DAL
             S();
         }
 
-        public int GetBillPublicPosition(string house = "", string senate = "", string dis = "")
+        public PositionResult GetBillPublicPosition(string house = "", string senate = "", string dis = "")
         {
+            PositionResult result = new PositionResult();
+            Random r = new Random();
             IQueryable<Vote> q = context.Votes.AsQueryable<Vote>();
             if (house != "")
             {
                 house = san(house);
-                q.Where(v => v.house_id == house);
+                q = q.Where(v => v.house_id == house);
             }
             else if (senate != "")
             {
                 senate = san(senate);
-                q.Where(v => v.senate_id == senate);
+                q = q.Where(v => v.senate_id == senate);
             }
             else
             {
-                throw new ArgumentException("Resolution not found. Please enter a valid House or Senate Resolution number. Ex: hr14202");
+                throw new ArgumentException("Resolution not found. Please enter a valid House or Senate Resolution number. Ex: hr1420");
             }
+
             if (dis != "")
             {
                 dis = san(dis);
-                q.Where(v => v.District == dis);
+                q = q.Where(v => v.District == dis);
+                result.District = dis;
             }
-            return q.Count();
+            List<Vote> votes = q.ToList();
+            double AvgImport = votes.Average(v => v.importance);
+            int For = votes.OrderBy(v => (v.support == "For")).Count();
+            int Against = votes.OrderBy(v => (v.support == "Against")).Count();
+            int j = Convert.ToInt32(r.Next(0, votes.Count));
+
+            result.For = For;
+            result.Against = Against;
+            result.AvgImportance = Math.Round(AvgImport, 2);
+            result.VideoId = votes[j].video_id;
+
+            return result;
         }
 
         public void AddBillPosition(string vid, string dis, bool _bool, string house = "", string senate = "", int import = 5)
