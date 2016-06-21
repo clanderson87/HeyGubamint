@@ -20,6 +20,9 @@ namespace FaceYourNation.Tests.Models
             Vote vote = new Vote();
             Bill bill = new Bill();
             bill.AddVote(vote);
+            bill.AddVote(vote);
+
+            Assert.AreEqual(1, bill.PublicPosition.Count);
         }
     }
 }

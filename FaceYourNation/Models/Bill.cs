@@ -17,11 +17,19 @@ namespace FaceYourNation.Models
 
         public void AddVote(Vote vote)
         {
-            if(PublicPosition.Exists(v => v.vID == vote.vID))
+            if (PublicPosition == null)
             {
-                return;
+                PublicPosition = new List<Vote>();
+                PublicPosition.Add(vote);
             }
-            PublicPosition.Add(vote);
+            else
+            {
+                if (PublicPosition.Exists(v => v.vID == vote.vID))
+                {
+                    return;
+                }
+                PublicPosition.Add(vote);
+            }
         }
     }
 }

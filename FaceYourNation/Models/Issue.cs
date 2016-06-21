@@ -22,23 +22,39 @@ namespace FaceYourNation.Models
         }
         
         public void AddLegislation(Bill bill)
-        { 
-            for (int i = 0; i < Legislation.Count(); i++)
+        {
+            if (Legislation == null)
             {
-                var legis = Legislation[i];
-                if ((legis.HouseID != bill.HouseID)
-                    || (legis.SenateID != bill.SenateID))
+                Legislation = new List<Bill> { bill };
+            }
+            else
+            {
+                for (int i = 0; i < Legislation.Count; i++)
                 {
-                    Legislation.Add(bill);
+                    var legis = Legislation[i];
+                    if ((legis.HouseID != bill.HouseID)
+                        || (legis.SenateID != bill.SenateID))
+                    {
+                        Legislation.Add(bill);
+                    }
                 }
             }
         }
 
         public void AddPresidentialPositionURL(string url)
         {
-            string pres_posURL = PresPositionURL;
             string whgov = "whitehouse.gov/issues/" + Name; //this is hard-coded by the Obama Administration's url naming schemes. This naming scheme could change under HillTrump. Be advised.
-            if (pres_posURL.Contains(whgov))
+            if ((PresPositionURL == null) && (url.Contains(whgov) == true))
+            {
+                PresPositionURL = url;
+                return;
+            }
+            else if ((PresPositionURL == null))
+            {
+                throw new ArgumentException("Please enter a valid 'whitehouse.gov/issues/' URL");
+            }
+            
+            if (PresPositionURL.Contains(whgov))
             {
                 return;
             }
