@@ -18,6 +18,10 @@ namespace FaceYourNation.Models
 
         public void AddVote(Vote vote)
         {
+            if(PublicPosition == null)
+            {
+                PublicPosition = new List<Vote>();
+            }
             PublicPosition.Add(vote);
         }
         

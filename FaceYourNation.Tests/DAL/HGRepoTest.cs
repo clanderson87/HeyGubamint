@@ -120,12 +120,92 @@ namespace FaceYourNation.Tests.DAL
             mock_vote_table.As<IQueryable<Vote>>().Setup(p => p.Provider).Returns(vote_data.Provider);
             mock_vote_table.Setup(vote => vote.Add(It.IsAny<Vote>())).Callback((Vote vote) => vote_datasource.Add(vote));
 
+            mock_context.Setup(context => context.Votes).Returns(mock_vote_table.Object);
+            mock_context.Setup(context => context.Issues).Returns(mock_issue_table.Object);
+            mock_context.Setup(context => context.Bills).Returns(mock_bill_table.Object);
         }
 
         [TestMethod]
-        public void EnsureICanAddAPosition()
+        public void RepoEnsureICanCreateAnInstance()
         {
+            HGRepo Repo = new HGRepo();
+            Assert.IsNotNull(Repo);
+        }
 
+        [TestMethod]
+        public void RepoEnsureICanGetAnIssueByName()
+        {
+            ConnectMocks();
+            //Arrange
+            Issue iss = new Issue();
+            iss.Name = "civilrights";
+            issue_datasource.Add(iss);
+
+            //Act
+            var ThisIssue = Repo.GetIssue("CivilRights");
+
+            //Assert
+            Assert.AreEqual("civilrights", ThisIssue.Name);
+        }
+
+        [TestMethod]
+        public void RepoEnsureICanGetABillById()
+        {
+            ConnectMocks();
+
+            //Arrange
+            Bill bill = new Bill();
+            bill.HouseID = "hr1234";
+            bill.Name = "GUNS!";
+            Bill bill_2 = new Bill();
+            bill_2.SenateID = "sr5678";
+            bill_2.Name = "MONEY!";
+            bill_datasource.Add(bill);
+            bill_datasource.Add(bill_2);
+
+            //Act
+            var thing1 = Repo.GetBill("hr1234");
+            var thing2 = Repo.GetBill("sr5678");
+
+            //Assert
+            Assert.AreEqual("GUNS!", thing1.Name);
+            Assert.AreEqual("MONEY!", thing2.Name);
+        }
+
+        [TestMethod]
+        public void RepoEnsureICanAddAnIssuePosition()
+        {
+            ConnectMocks();
+            //Arrange
+            Issue iss = new Issue();
+            iss.Name = "Guns?";
+            issue_datasource.Add(iss);
+
+            //Act
+            Repo.AddIssuePosition("Guns?", "FL14", "abc123", true, 7);
+
+            //Assert
+            Assert.IsNotNull(vote_data);
+            Assert.IsNotNull(iss.PublicPosition);
+            Assert.AreEqual("fl14", iss.PublicPosition[0].District);
+        }
+
+        [TestMethod]
+        public void RepoEnsureICanGetPublicPositionObj()
+        {
+            ConnectMocks();
+            //Arrange
+            Issue iss = new Issue();
+            iss.Name = "Iran";
+            issue_datasource.Add(iss);
+
+            //Act
+            Repo.AddIssuePosition("Iran", "NY12", "123abc", false, 9);
+            PositionResult result = Repo.GetIssuePublicPosition("Iran", "NY12");
+
+            //Assert
+            Assert.AreEqual("Iran", result.Issue_Name);
+            Assert.AreEqual(1, result.Against);
         }
 
     }
