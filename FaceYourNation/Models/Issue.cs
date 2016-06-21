@@ -9,20 +9,14 @@ namespace FaceYourNation.Models
     {
         public string Name { get; set; }
         public string Iid { get; set; }
-        public int PublicSupport { get; set; }
-        public int PublicOpposition { get; set; }
+        public List<Vote> PublicPosition { get; set; }
         public string PresidentialPosition { get; set; }
         public string PresPositionURL { get; set; }
         public List<Bill> Legislation { get; set; }
 
-        public void IncrementPublicSupport()
+        public void AddVote(Vote vote)
         {
-            PublicSupport = PublicSupport + 1;
-        }
-
-        public void IncrementPublicOpposition()
-        {
-            PublicOpposition = PublicOpposition + 1;
+            PublicPosition.Add(vote);
         }
         
         public void AddLegislation(Bill bill)
