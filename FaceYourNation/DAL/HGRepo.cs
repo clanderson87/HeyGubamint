@@ -60,24 +60,25 @@ namespace FaceYourNation.DAL
             return query as Bill;
         }
 
-        private Vote SetVote(string dis, string vid, bool _bool)
+        private Vote SetVote(string dis, string vid, bool _bool, int import = 5)
         {
             dis = san(dis);
             Vote vote = new Vote();
             vote.District = dis;
             vote.video_id = vid;
-            vote.LogPublicPosition(_bool);
+            vote.LogPublicSupport(_bool);
+            vote.importance = import;
             return vote;
         }
 
         //Public Methods for Getting/Manipulating Data
         
-        public void AddIssuePosition(string iss_name, string dis, string vid, bool _bool)
+        public void AddIssuePosition(string iss_name, string dis, string vid, bool _bool, string pos = "", int import = 5)
         {
             iss_name = san(iss_name);
             dis = san(dis);
             Issue iss = GetIssueByName(iss_name);
-            Vote vote = SetVote(dis, vid, _bool);
+            Vote vote = SetVote(dis, vid, _bool, import);
             vote.issue_name = iss_name;
             iss.AddVote(vote);
             S();
@@ -116,7 +117,7 @@ namespace FaceYourNation.DAL
         {
             iss_name = san(iss_name);
             Issue iss = GetIssueByName(iss_name);
-            iss.AddPresidentialPosition(url);
+            iss.AddPresidentialPositionURL(url);
             S();
         }
 
@@ -176,11 +177,11 @@ namespace FaceYourNation.DAL
             return q.Count();
         }
 
-        public void AddBillPosition(string vid, string dis, bool _bool, string house = "", string senate = "")
+        public void AddBillPosition(string vid, string dis, bool _bool, string house = "", string senate = "", int import = 5)
         {
             Bill bill = null;
             dis = san(dis);
-            Vote vote = SetVote(dis, vid, _bool);
+            Vote vote = SetVote(dis, vid, _bool, import);
             if (house != "")
             {
                 house = san(house);

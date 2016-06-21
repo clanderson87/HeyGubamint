@@ -122,6 +122,11 @@ namespace FaceYourNation.Tests.DAL
 
         }
 
+        [TestMethod]
+        public void EnsureICanAddAPosition()
+        {
+
+        }
 
     }
 }

@@ -110,6 +110,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DAL\HGRepoTest.cs" />
+    <Compile Include="Models\BillTest.cs" />
+    <Compile Include="Models\IssueTest.cs" />
+    <Compile Include="Models\VoteTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
     <Compile Include="Controllers\ValuesControllerTest.cs" />
@@ -126,9 +129,7 @@
       <Name>HeyGubamint</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.

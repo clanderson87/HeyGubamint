@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -7,15 +8,21 @@ namespace FaceYourNation.Models
 {
     public class Vote
     {
+        [Key]
         public string vID { get; set; } //unique ID of a vote
+        [Required]
         public string District { get; set; } // ex: TN5, NY16, TX25
+        [Required]
         public string video_id { get; set; } //ID of video
+
         public string issue_name { get; set; }
         public string house_id { get; set; }
         public string senate_id { get; set; }
         public string support { get; private set; }
+        [Range(1, 10)]
+        public int importance { get; set; }
 
-        public void LogPublicPosition(bool _bool)
+        public void LogPublicSupport(bool _bool)
         {
             if(_bool == false)
             {
@@ -25,7 +32,6 @@ namespace FaceYourNation.Models
             {
                 support = "For";
             }
-
         }
     }
 }

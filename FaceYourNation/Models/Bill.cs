@@ -17,6 +17,10 @@ namespace FaceYourNation.Models
 
         public void AddVote(Vote vote)
         {
+            if(PublicPosition.Exists(v => v.vID == vote.vID))
+            {
+                return;
+            }
             PublicPosition.Add(vote);
         }
     }
