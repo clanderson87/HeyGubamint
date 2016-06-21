@@ -11,5 +11,6 @@ namespace FaceYourNation.DAL
     {
         public virtual DbSet<Issue> Issues { get; set; }
         public virtual DbSet<Bill> Bills { get; set; }
+        public virtual DbSet<Vote> Votes { get; set; }
     }
 }
