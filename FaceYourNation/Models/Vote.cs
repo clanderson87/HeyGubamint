@@ -19,7 +19,7 @@ namespace FaceYourNation.Models
         public string house_id { get; set; }
         public string senate_id { get; set; }
         //[Required] make sure to uncomment this after migrations...
-        public string support { get; private set; }
+        public string support { get; set; } //make private set for production. This was made public set because seed method needed it.
         public int importance { get; set; }
 
         public void LogPublicSupport(bool _bool)
