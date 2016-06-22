@@ -9,7 +9,6 @@ using FaceYourNation.DAL;
 
 namespace FaceYourNation.Controllers
 {
-    [Route("api/[controller]")]
     public class BillController : ApiController
     {
         HGRepo Repo = new HGRepo();
