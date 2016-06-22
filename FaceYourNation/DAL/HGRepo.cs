@@ -126,10 +126,10 @@ namespace FaceYourNation.DAL
 
             List<Vote> votes = q.ToList();
             double AvgImport = votes.Average(v => v.importance);
-            int For = votes.OrderBy(v => (v.support == "For")).Count();
-            int Against = votes.OrderBy(v => (v.support == "Against")).Count();
+            int For = votes.FindAll(v => (v.support == "For")).Count();
+            int Against = votes.FindAll(v => (v.support == "Against")).Count();
 
-            
+
             result.Issue_Name = iss.Name;
             result.For = For;
             result.Against = Against;
@@ -219,8 +219,10 @@ namespace FaceYourNation.DAL
             }
             List<Vote> votes = q.ToList();
             double AvgImport = votes.Average(v => v.importance);
-            int For = votes.OrderBy(v => (v.support == "For")).Count();
-            int Against = votes.OrderBy(v => (v.support == "Against")).Count();
+            //int For = votes.OrderBy(v => (v.support == "For")).Count();
+            int For = votes.FindAll(v => (v.support == "For")).Count();
+            //int Against = votes.OrderBy(v => (v.support == "Against")).Count();
+            int Against = votes.FindAll(v => (v.support == "Against")).Count();
             int j = Convert.ToInt32(r.Next(0, votes.Count));
 
             result.For = For;

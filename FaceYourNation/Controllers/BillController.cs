@@ -4,11 +4,13 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using FaceYourNation.Models;
 using FaceYourNation.DAL;
 
 namespace FaceYourNation.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "get, post")]
     public class BillController : ApiController
     {
         HGRepo Repo = new HGRepo();
@@ -35,12 +37,14 @@ namespace FaceYourNation.Controllers
         }
 
         // POST: api/Bill
-        public void Post(string name, string billUrl, string houseID = "", string senateID = "", bool _pres_support = false)
-        {
+        [HttpPut]
+        public void Put([FromUri]string name, [FromUri]string billUrl, [FromUri]string houseID = "", [FromUri]string senateID = "", [FromUri]bool _pres_support = false)
+        {   
             Repo.AddBill(name: name, the_bill: billUrl, house: houseID, senate: senateID, pres_support: _pres_support);
         }
 
         // POST: api/Bill
+        [HttpPost]
         public void Post(string _vid, string _dis, bool support, string houseID = "", string senateID = "", int _import = 5)
         {
             Repo.AddBillPosition(vid: _vid, dis: _dis, _bool: support, house: houseID, senate: senateID, import: _import);
