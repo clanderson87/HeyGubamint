@@ -69,7 +69,7 @@ namespace FaceYourNation.Migrations
                 v => v.issue_name,
                 new Vote { District = "tn5", issue_name = "economy", video_id = "9bZkp7q19f0" },
                 new Vote { District = "tn5", issue_name = "education", video_id = "74Wei0-vAZs" },
-                new Vote { District = "tn5", issue_name = "iran deal", video_id = "CmoERR3kSa4" },
+                new Vote { District = "tn11", issue_name = "iran deal", video_id = "CmoERR3kSa4" },
                 new Vote { District = "tn5", issue_name = "energy and environment", video_id = "TfkUKb6IGFE" },
                 new Vote { District = "tn5", issue_name = "immigration", video_id = "c0rK2bLTimQ" }
             );
