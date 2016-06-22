@@ -4,36 +4,47 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using FaceYourNation.Models;
+using FaceYourNation.DAL;
 
 namespace FaceYourNation.Controllers
 {
+    [Route("api/[controller]")]
     public class BillController : ApiController
     {
+        HGRepo Repo = new HGRepo();
+
         // GET: api/Bill
-        public IEnumerable<string> Get()
+        public IEnumerable<Bill> Get()
         {
-            return new string[] { "value1", "value2" };
+            List<Bill> bills =  Repo.GetBills();
+            return bills;
         }
 
         // GET: api/Bill/5
-        public string Get(int id)
+        public Bill Get(string id)
         {
-            return "value";
+            Bill bill = Repo.GetBill(id);
+            return bill;
+        }
+        
+        //GET: api/Bill
+        public PositionResult Get(string _dis, string _house = "", string _senate = "")
+        {
+            PositionResult result = Repo.GetBillPublicPosition(dis: _dis, senate: _senate, house: _house);
+            return result;
         }
 
         // POST: api/Bill
-        public void Post([FromBody]string value)
+        public void Post(string name, string billUrl, string houseID = "", string senateID = "", bool _pres_support = false)
         {
+            Repo.AddBill(name: name, the_bill: billUrl, house: houseID, senate: senateID, pres_support: _pres_support);
         }
 
-        // PUT: api/Bill/5
-        public void Put(int id, [FromBody]string value)
+        // POST: api/Bill
+        public void Post(string _vid, string _dis, bool support, string houseID = "", string senateID = "", int _import = 5)
         {
-        }
-
-        // DELETE: api/Bill/5
-        public void Delete(int id)
-        {
+            Repo.AddBillPosition(vid: _vid, dis: _dis, _bool: support, house: houseID, senate: senateID, import: _import);
         }
     }
 }
