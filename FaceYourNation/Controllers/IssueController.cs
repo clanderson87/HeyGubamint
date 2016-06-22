@@ -16,19 +16,22 @@ namespace FaceYourNation.Controllers
         // GET: api/Issue
         public IEnumerable<Issue> Get()
         {
-            return Repo.GetIssues();
+            List<Issue> issues = Repo.GetIssues();
+            return issues;
         }
 
         // GET: api/Issue/5
         public Issue Get(string name)
         {
-            return Repo.GetIssue(name);
+            Issue iss = Repo.GetIssue(name);
+            return iss;
         }
 
         // GET: api/Issue/
         public PositionResult Get(string _iss_name, string _dis = "")
         {
-            return Repo.GetIssuePublicPosition(iss_name: _iss_name, dis: _dis);
+            PositionResult result = Repo.GetIssuePublicPosition(iss_name: _iss_name, dis: _dis);
+            return result;
         }
 
         // POST: api/Issue

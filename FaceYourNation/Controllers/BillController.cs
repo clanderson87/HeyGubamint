@@ -17,19 +17,22 @@ namespace FaceYourNation.Controllers
         // GET: api/Bill
         public IEnumerable<Bill> Get()
         {
-            return Repo.GetBills();
+            List<Bill> bills =  Repo.GetBills();
+            return bills;
         }
 
         // GET: api/Bill/5
         public Bill Get(string id)
         {
-            return Repo.GetBill(id);
+            Bill bill = Repo.GetBill(id);
+            return bill;
         }
         
         //GET: api/Bill
         public PositionResult Get(string _dis, string _house = "", string _senate = "")
         {
-            return Repo.GetBillPublicPosition(dis: _dis, senate: _senate, house: _house);
+            PositionResult result = Repo.GetBillPublicPosition(dis: _dis, senate: _senate, house: _house);
+            return result;
         }
 
         // POST: api/Bill
