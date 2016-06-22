@@ -75,6 +75,16 @@ namespace FaceYourNation.DAL
 
         //Public Methods for Getting/Manipulating Data
         
+        public List<Bill> GetBills()
+        {
+            return context.Bills.ToList();
+        }
+
+        public List<Issue> GetIssues()
+        {
+            return context.Issues.ToList();
+        }
+
         public Issue GetIssue(string iss_name)
         {
             return GetIssueByName(iss_name);

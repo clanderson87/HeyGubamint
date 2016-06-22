@@ -4,36 +4,37 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using FaceYourNation.DAL;
+using FaceYourNation.Models;
 
 namespace FaceYourNation.Controllers
 {
     public class IssueController : ApiController
     {
+        HGRepo Repo = new HGRepo();
+
         // GET: api/Issue
-        public IEnumerable<string> Get()
+        public IEnumerable<Issue> Get()
         {
-            return new string[] { "value1", "value2" };
+            return Repo.GetIssues();
         }
 
         // GET: api/Issue/5
-        public string Get(int id)
+        public Issue Get(string name)
         {
-            return "value";
+            return Repo.GetIssue(name);
+        }
+
+        // GET: api/Issue/
+        public PositionResult Get(string _iss_name, string _dis = "")
+        {
+            return Repo.GetIssuePublicPosition(iss_name: _iss_name, dis: _dis);
         }
 
         // POST: api/Issue
-        public void Post([FromBody]string value)
+        public void Post(string _iss_name, string _dis, string _vid, bool _bool_, int _import = 5)
         {
-        }
-
-        // PUT: api/Issue/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE: api/Issue/5
-        public void Delete(int id)
-        {
+            Repo.AddIssuePosition(iss_name: _iss_name, dis: _dis, vid: _vid, _bool: _bool_, import: _import);
         }
     }
 }
