@@ -87,12 +87,14 @@ namespace FaceYourNation.DAL
 
         public Issue GetIssue(string iss_name)
         {
-            return GetIssueByName(iss_name);
+            Issue iss = GetIssueByName(iss_name);
+            return iss;
         }
 
         public Bill GetBill(string id)
         {
-            return GetBillById(id);
+            Bill bill = GetBillById(id);
+            return bill;
         }
 
         public void AddIssuePosition(string iss_name, string dis, string vid, bool _bool, int import = 5)

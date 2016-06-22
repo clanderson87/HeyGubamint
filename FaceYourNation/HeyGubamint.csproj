@@ -247,6 +247,10 @@
     <Compile Include="Migrations\201606221528102_InitialCreate.Designer.cs">
       <DependentUpon>201606221528102_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201606221857503_VotingFun.cs" />
+    <Compile Include="Migrations\201606221857503_VotingFun.Designer.cs">
+      <DependentUpon>201606221857503_VotingFun.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -334,6 +338,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201606221528102_InitialCreate.resx">
       <DependentUpon>201606221528102_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606221857503_VotingFun.resx">
+      <DependentUpon>201606221857503_VotingFun.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
