@@ -25,6 +25,12 @@ namespace FaceYourNation
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+            //Everything below is EXPREIMENTAL AND IT COULD KILL ME!!!
+            config.Routes.MapHttpRoute(
+                name: "GetPositionResult",
+                routeTemplate: "api/{controller}/{_dis}/{_house}/{_senate}",
+                defaults: new { _senate = RouteParameter.Optional, _house = RouteParameter.Optional }
+            );
         }
     }
 }
