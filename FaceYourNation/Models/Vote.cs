@@ -18,6 +18,7 @@ namespace FaceYourNation.Models
         public string issue_name { get; set; }
         public string house_id { get; set; }
         public string senate_id { get; set; }
+        //[Required] make sure to uncomment this after migrations...
         public string support { get; private set; }
         [Range(1, 10)]
         public int importance { get; set; }
