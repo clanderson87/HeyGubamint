@@ -247,10 +247,6 @@
     <Compile Include="Migrations\201606221528102_InitialCreate.Designer.cs">
       <DependentUpon>201606221528102_InitialCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201606221657388_SeedTake2.cs" />
-    <Compile Include="Migrations\201606221657388_SeedTake2.Designer.cs">
-      <DependentUpon>201606221657388_SeedTake2.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -338,9 +334,6 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201606221528102_InitialCreate.resx">
       <DependentUpon>201606221528102_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606221657388_SeedTake2.resx">
-      <DependentUpon>201606221657388_SeedTake2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

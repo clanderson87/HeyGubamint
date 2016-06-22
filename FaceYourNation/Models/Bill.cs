@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -10,7 +11,6 @@ namespace FaceYourNation.Models
     {
         [Key]
         public int Bid { get; set; }
-        [Required]
         public string Name { get; set; } //the title of the bill
         public string HouseID { get; set; } //House ID number
         public string SenateID { get; set; } //Senate ID Number
