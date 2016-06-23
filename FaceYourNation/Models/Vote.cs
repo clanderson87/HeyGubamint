@@ -9,7 +9,8 @@ namespace FaceYourNation.Models
     public class Vote
     {
         [Key]
-        public string vID { get; set; } //unique ID of a vote
+        public int VoteId { get; set; }
+
         [Required]
         public string District { get; set; } // ex: TN5, NY16, TX25
         [Required]

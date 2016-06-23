@@ -50,37 +50,9 @@ namespace FaceYourNation.Controllers
             }
             else
             {
-                Repo.AddBill(
-                    name: bill.Name,
-                    the_bill: bill.theBill,
-                    house: bill.HouseID,
-                    senate: bill.SenateID,
-                    pres_support: bill.PresidentialSupport
-                    
-                );
-                /*Repo.context.Bills.Add(bill);*/
+                Repo.AddBillByBill(bill);
                 return CreatedAtRoute("DefaultApi", new { id = bill.Bid }, bill);
             }
         }
-
-        /*// POST: api/Bill
-        [HttpPost]
-        public void Post([FromUri]string name, [FromUri]string billUrl, [FromUri]string houseID = "", [FromUri]string senateID = "", [FromUri]bool _pres_support = false)
-        {   
-            Repo.AddBill(name: name, the_bill: billUrl, house: houseID, senate: senateID, pres_support: _pres_support);
-        }*/
-        /*
-        // POST: api/Bill
-        [HttpPost]
-        public IHttpActionResult Post([FromBody]Vote vote)
-        {
-            if (!ModelState.IsValid || vote == null)
-            {
-                return BadRequest();
-            }
-            Repo.AddBillPosition(vid: vote.video_id, dis: vote.District, _bool: vote.torf, house: vote.house_id, senate: vote.senate_id, import: vote.importance);
-
-            return Ok();
-        }*/
     }
 }
