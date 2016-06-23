@@ -220,6 +220,7 @@ namespace FaceYourNation.Tests.DAL
 
             //Assert
             Assert.AreEqual(2, bill_datasource.Count);
+            Assert.AreEqual("Guns for everybody!", bill_datasource[0].Name);
         }
 
         [TestMethod]

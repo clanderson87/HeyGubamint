@@ -38,15 +38,13 @@ namespace FaceYourNation
             //For AddBill
             config.Routes.MapHttpRoute(
                 name: "PostBill",
-                routeTemplate: "api/{controller}/{name}/{billUrl}/{houseID}/{senateID}/{_pres_support}",
-                defaults: new { senateID = RouteParameter.Optional, houseID = RouteParameter.Optional, _pres_support = RouteParameter.Optional }
+                routeTemplate: "api/{controller}"
             );
 
             //For AddBillPosition
             config.Routes.MapHttpRoute(
-                name: "PostBillPosition",
-                routeTemplate: "api/{controller}/{_vid}/{_dis}/{support}/{houseID}/{senateID}/{import}",
-                defaults: new { senateID = RouteParameter.Optional, houseID = RouteParameter.Optional, import = RouteParameter.Optional }
+                name: "PostPositionForBill",
+                routeTemplate: "api/{controller}/{action}"
             );
         }
     }

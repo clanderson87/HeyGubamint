@@ -4,11 +4,12 @@ using System.Linq;
 using System.Web;
 using FaceYourNation.Models;
 using System.Data.Entity;
+using System.Net.Http;
 using System.Text;
 
 namespace FaceYourNation.DAL
 {
-    public class HGRepo
+    public class HGRepo 
     {
         public HGContext context { get; set; }
 
@@ -31,6 +32,10 @@ namespace FaceYourNation.DAL
 
         private string san(string str) //sanitize the data
         {
+            if (str == null || str == "")
+            {
+                return str;
+            }
             str = str.ToLower();
             if (str.IndexOf('.') > -1)
             {
@@ -163,8 +168,14 @@ namespace FaceYourNation.DAL
 
         public void AddBill(string name, string the_bill, string house = "", string senate = "", bool pres_support = false)
         {
-            house = san(house);
-            senate = san(senate);
+            if (house != "")
+            {
+                house = san(house);
+            }
+            if(senate != "")
+            {
+                senate = san(senate);
+            }
             Bill bill = new Bill();
             bill.Name = name;
             bill.theBill = the_bill;
@@ -188,7 +199,7 @@ namespace FaceYourNation.DAL
             }
             bill.PresidentialSupport = pres_support;
             context.Bills.Add(bill);
-            S();
+            context.SaveChanges();
         }
 
         public PositionResult GetBillPublicPosition(string house = "", string senate = "", string dis = "")
@@ -250,7 +261,7 @@ namespace FaceYourNation.DAL
                 vote.senate_id = senate;
             }
             bill.AddVote(vote);
-            S();
+            context.SaveChanges();
         }
     }
 }

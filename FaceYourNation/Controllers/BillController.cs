@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Description;
 using System.Web.Http.Cors;
 using FaceYourNation.Models;
 using FaceYourNation.DAL;
@@ -36,18 +40,47 @@ namespace FaceYourNation.Controllers
             return result;
         }
 
-        // POST: api/Bill
-        [HttpPut]
-        public void Put([FromUri]string name, [FromUri]string billUrl, [FromUri]string houseID = "", [FromUri]string senateID = "", [FromUri]bool _pres_support = false)
-        {   
-            Repo.AddBill(name: name, the_bill: billUrl, house: houseID, senate: senateID, pres_support: _pres_support);
+        [HttpPost]
+        [ResponseType(typeof(Bill))]
+        public IHttpActionResult Post([FromBody]Bill bill)
+        {
+            if (!ModelState.IsValid || bill == null)
+            {
+                return BadRequest();
+            }
+            else
+            {
+                Repo.AddBill(
+                    name: bill.Name,
+                    the_bill: bill.theBill,
+                    house: bill.HouseID,
+                    senate: bill.SenateID,
+                    pres_support: bill.PresidentialSupport
+                    
+                );
+                /*Repo.context.Bills.Add(bill);*/
+                return CreatedAtRoute("DefaultApi", new { id = bill.Bid }, bill);
+            }
         }
 
+        /*// POST: api/Bill
+        [HttpPost]
+        public void Post([FromUri]string name, [FromUri]string billUrl, [FromUri]string houseID = "", [FromUri]string senateID = "", [FromUri]bool _pres_support = false)
+        {   
+            Repo.AddBill(name: name, the_bill: billUrl, house: houseID, senate: senateID, pres_support: _pres_support);
+        }*/
+        /*
         // POST: api/Bill
         [HttpPost]
-        public void Post(string _vid, string _dis, bool support, string houseID = "", string senateID = "", int _import = 5)
+        public IHttpActionResult Post([FromBody]Vote vote)
         {
-            Repo.AddBillPosition(vid: _vid, dis: _dis, _bool: support, house: houseID, senate: senateID, import: _import);
-        }
+            if (!ModelState.IsValid || vote == null)
+            {
+                return BadRequest();
+            }
+            Repo.AddBillPosition(vid: vote.video_id, dis: vote.District, _bool: vote.torf, house: vote.house_id, senate: vote.senate_id, import: vote.importance);
+
+            return Ok();
+        }*/
     }
 }

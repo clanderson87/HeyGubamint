@@ -259,6 +259,10 @@
     <Compile Include="Migrations\201606221857503_VotingFun.Designer.cs">
       <DependentUpon>201606221857503_VotingFun.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201606230430466_New-Migration.cs" />
+    <Compile Include="Migrations\201606230430466_New-Migration.Designer.cs">
+      <DependentUpon>201606230430466_New-Migration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -276,6 +280,7 @@
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Vital.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -316,6 +321,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\riot+compiler.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -349,6 +355,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201606221857503_VotingFun.resx">
       <DependentUpon>201606221857503_VotingFun.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606230430466_New-Migration.resx">
+      <DependentUpon>201606230430466_New-Migration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

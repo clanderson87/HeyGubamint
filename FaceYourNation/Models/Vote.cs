@@ -21,6 +21,7 @@ namespace FaceYourNation.Models
         //[Required] make sure to uncomment this after migrations...
         public string support { get; set; } //make private set for production. This was made public set because seed method needed it.
         public int importance { get; set; }
+        public bool torf { get; set; }
 
         public void LogPublicSupport(bool _bool)
         {
