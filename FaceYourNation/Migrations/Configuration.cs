@@ -43,11 +43,11 @@ namespace FaceYourNation.Migrations
 
             context.Votes.AddOrUpdate(
                 v => v.issue_name,
-                new Vote { vID = "v1", District = "tn5", issue_name = "economy", video_id = "9bZkp7q19f0", house_id = "hr5470", importance = 6, support = "For" },
-                new Vote { vID = "v2", District = "tn5", issue_name = "education", video_id = "74Wei0-vAZs", house_id = "hr5471", importance = 3, support = "For" },
-                new Vote { vID = "v3", District = "tn11", issue_name = "health care", video_id = "CmoERR3kSa4", house_id = "hr1062", importance = 9, support = "Against" },
-                new Vote { vID = "v4", District = "tn5", issue_name = "energy and environment", video_id = "TfkUKb6IGFE", house_id = "hr5470", importance = 9, support = "For" },
-                new Vote { vID = "v5", District = "tn5", issue_name = "immigration", video_id = "c0rK2bLTimQ", senate_id = "s502", importance = 2, support = "Against" }
+                new Vote { VoteId = 1, District = "tn5", issue_name = "economy", video_id = "9bZkp7q19f0", house_id = "hr5470", importance = 6, support = "For" },
+                new Vote { VoteId = 2, District = "tn5", issue_name = "education", video_id = "74Wei0-vAZs", house_id = "hr5471", importance = 3, support = "For" },
+                new Vote { VoteId = 3, District = "tn11", issue_name = "health care", video_id = "CmoERR3kSa4", house_id = "hr1062", importance = 9, support = "Against" },
+                new Vote { VoteId = 4, District = "tn5", issue_name = "energy and environment", video_id = "TfkUKb6IGFE", house_id = "hr5470", importance = 9, support = "For" },
+                new Vote { VoteId = 5, District = "tn5", issue_name = "immigration", video_id = "c0rK2bLTimQ", senate_id = "s502", importance = 2, support = "Against" }
             );
         }
     }

@@ -30,7 +30,7 @@ namespace FaceYourNation.Models
             }
             else
             {
-                if (PublicPosition.Exists(v => v.vID == vote.vID))
+                if (PublicPosition.Exists(v => v.VoteId == vote.VoteId))
                 {
                     return;
                 }

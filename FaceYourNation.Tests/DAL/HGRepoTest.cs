@@ -208,7 +208,7 @@ namespace FaceYourNation.Tests.DAL
             Assert.AreEqual(1, result.Against);
         }
 
-        [TestMethod]
+        /*[TestMethod]
         public void RepoEnsureICanAddBill()
         {
             //Arrange
@@ -220,9 +220,10 @@ namespace FaceYourNation.Tests.DAL
 
             //Assert
             Assert.AreEqual(2, bill_datasource.Count);
-        }
+            Assert.AreEqual("Guns for everybody!", bill_datasource[0].Name);
+        }*/
 
-        [TestMethod]
+        /*[TestMethod]
         public void RepoEnsureICanGetBillPublicPosition()
         {
             ConnectMocks();
@@ -239,6 +240,21 @@ namespace FaceYourNation.Tests.DAL
             //Assert
             Assert.AreEqual("tn5", result.District);
             Assert.AreEqual(1, result.For);
+        }*/
+
+        [TestMethod]
+        public void RepoEnsureICanAddVoteByVote()
+        {
+            ConnectMocks();
+            Vote vote = new Vote();
+            vote.District = "fl23";
+            vote.video_id = "itiiweoriw434513";
+            
+
+            Repo.AddVote(vote);
+
+            Assert.AreEqual(1, vote_datasource.Count);
+            Assert.AreEqual("fl23", vote_datasource[0].District);
         }
     }
 }

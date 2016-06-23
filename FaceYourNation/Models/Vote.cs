@@ -9,7 +9,8 @@ namespace FaceYourNation.Models
     public class Vote
     {
         [Key]
-        public string vID { get; set; } //unique ID of a vote
+        public int VoteId { get; set; }
+
         [Required]
         public string District { get; set; } // ex: TN5, NY16, TX25
         [Required]
@@ -21,6 +22,7 @@ namespace FaceYourNation.Models
         //[Required] make sure to uncomment this after migrations...
         public string support { get; set; } //make private set for production. This was made public set because seed method needed it.
         public int importance { get; set; }
+        public bool torf { get; set; }
 
         public void LogPublicSupport(bool _bool)
         {

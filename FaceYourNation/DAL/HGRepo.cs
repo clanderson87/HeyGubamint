@@ -4,11 +4,12 @@ using System.Linq;
 using System.Web;
 using FaceYourNation.Models;
 using System.Data.Entity;
+using System.Net.Http;
 using System.Text;
 
 namespace FaceYourNation.DAL
 {
-    public class HGRepo
+    public class HGRepo 
     {
         public HGContext context { get; set; }
 
@@ -26,11 +27,35 @@ namespace FaceYourNation.DAL
 
         private void S()
         {
-            context.SaveChanges();
+            try
+            {
+                context.SaveChanges();
+            }
+            catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
+            {
+                Exception raise = dbEx;
+                foreach (var validationErrors in dbEx.EntityValidationErrors)
+                {
+                    foreach (var validationError in validationErrors.ValidationErrors)
+                    {
+                        string message = string.Format("{0}:{1}",
+                            validationErrors.Entry.Entity.ToString(),
+                            validationError.ErrorMessage);
+                        // raise a new exception nesting
+                        // the current instance as InnerException
+                        raise = new InvalidOperationException(message, raise);
+                    }
+                }
+                throw raise;
+            }
         }
 
         private string san(string str) //sanitize the data
         {
+            if (str == null || str == "")
+            {
+                return str;
+            }
             str = str.ToLower();
             if (str.IndexOf('.') > -1)
             {
@@ -161,34 +186,10 @@ namespace FaceYourNation.DAL
             S();
         }
 
-        public void AddBill(string name, string the_bill, string house = "", string senate = "", bool pres_support = false)
+        public void AddBillByBill(Bill bill)
         {
-            house = san(house);
-            senate = san(senate);
-            Bill bill = new Bill();
-            bill.Name = name;
-            bill.theBill = the_bill;
-            if (house != "")
-            {
-                if (GetBillById(house) != null)
-                {
-                    bill = null;
-                    return;
-                }
-                bill.HouseID = house;
-            }
-            if (senate != "")
-            {
-                if (GetBillById(senate) != null)
-                {
-                    bill = null;
-                    return;
-                }
-                bill.SenateID = senate;
-            }
-            bill.PresidentialSupport = pres_support;
             context.Bills.Add(bill);
-            S();
+            context.SaveChanges();
         }
 
         public PositionResult GetBillPublicPosition(string house = "", string senate = "", string dis = "")
@@ -210,7 +211,6 @@ namespace FaceYourNation.DAL
             {
                 throw new ArgumentException("Resolution not found. Please enter a valid House or Senate Resolution number. Ex: hr1420");
             }
-
             if (dis != "")
             {
                 dis = san(dis);
@@ -219,9 +219,7 @@ namespace FaceYourNation.DAL
             }
             List<Vote> votes = q.ToList();
             double AvgImport = votes.Average(v => v.importance);
-            //int For = votes.OrderBy(v => (v.support == "For")).Count();
             int For = votes.FindAll(v => (v.support == "For")).Count();
-            //int Against = votes.OrderBy(v => (v.support == "Against")).Count();
             int Against = votes.FindAll(v => (v.support == "Against")).Count();
             int j = Convert.ToInt32(r.Next(0, votes.Count));
 
@@ -233,7 +231,13 @@ namespace FaceYourNation.DAL
             return result;
         }
 
-        public void AddBillPosition(string vid, string dis, bool _bool, string house = "", string senate = "", int import = 5)
+        public void AddVote(Vote vote)
+        {
+            context.Votes.Add(vote);
+            S();
+        }
+
+        /*public void AddBillPosition(string vid, string dis, bool _bool, string house = "", string senate = "", int import = 5)
         {
             Bill bill = null;
             dis = san(dis);
@@ -250,7 +254,6 @@ namespace FaceYourNation.DAL
                 vote.senate_id = senate;
             }
             bill.AddVote(vote);
-            S();
-        }
+            context.SaveChanges();*/
     }
 }

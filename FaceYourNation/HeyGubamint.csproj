@@ -246,18 +246,15 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IssueController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Controllers\VoteController.cs" />
     <Compile Include="DAL\HGContext.cs" />
     <Compile Include="DAL\HGRepo.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201606221528102_InitialCreate.cs" />
-    <Compile Include="Migrations\201606221528102_InitialCreate.Designer.cs">
-      <DependentUpon>201606221528102_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201606221857503_VotingFun.cs" />
-    <Compile Include="Migrations\201606221857503_VotingFun.Designer.cs">
-      <DependentUpon>201606221857503_VotingFun.cs</DependentUpon>
+    <Compile Include="Migrations\201606231623418_Take19.cs" />
+    <Compile Include="Migrations\201606231623418_Take19.Designer.cs">
+      <DependentUpon>201606231623418_Take19.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -276,6 +273,7 @@
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Vital.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -316,6 +314,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\riot+compiler.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -344,11 +343,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201606221528102_InitialCreate.resx">
-      <DependentUpon>201606221528102_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201606221857503_VotingFun.resx">
-      <DependentUpon>201606221857503_VotingFun.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201606231623418_Take19.resx">
+      <DependentUpon>201606231623418_Take19.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
