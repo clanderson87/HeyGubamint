@@ -2,9 +2,9 @@
 
 So...
 
-This was my Backend Capstone at [http://www.nashvillesoftwareschool.com](Nashville Softeware School). I'm not proud of it, but it happened. I take that back. I *am* proud of it, I just wish it was different.
+This was my Backend Capstone at [Nashville Software School](http://www.nashvillesoftwareschool.com). I'm not proud of it, but it happened. I take that back. I *am* proud of it, I just wish it was different.
 
-I was part of [http://nss-cohort-e2.github.io/](evening cohort 2) at NSS. We spent a year, three times a week, learning all about the fundementals of web development and C#. 
+I was part of [evening cohort 2](http://nss-cohort-e2.github.io/) at NSS. We spent a year, three times a week, learning all about the fundementals of web development and C#. 
 
 And then demo day happened.
 
