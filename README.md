@@ -12,7 +12,7 @@ HeyGubamint is a working webAPI project. In the Evening cohort, we never covered
 
 And it worked.
 
-My frontend, however, didn't. I wrote it in [riot.js]{http://www.riotjs.com) to prove that I could learn something that wasn't taught, and it broke. It broke hard. It worked fine on the macOS side of my laptop, but when I ported it to visual studio, everything went up in flames. I spent three hours trying to fix it until 4 AM the morning before presentations. No luck. I threw together the worlds worst Angular partial so I could prove my Web API worked, and I presented. People took my resume, mostly out of pity.
+My frontend, however, didn't. I wrote it in [riot.js](http://www.riotjs.com) to prove that I could learn something that wasn't taught, and it broke. It broke hard. It worked fine on the macOS side of my laptop, but when I ported it to visual studio, everything went up in flames. I spent three hours trying to fix it until 4 AM the morning before presentations. No luck. I threw together the worlds worst Angular partial so I could prove my Web API worked, and I presented. People took my resume, mostly out of pity.
 
 HeyGubamint is a monument to my failure. However, I want to come back to it and make it a success.
 
